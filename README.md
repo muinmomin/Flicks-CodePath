@@ -1,15 +1,17 @@
-# Project 1 - *Name of App Here*
+# Project 1 - *Flicks*
 
-**Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+# Only the set up part of the assignment has been completed.
 
-Time spent: **X** hours spent in total
+**Flicks** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+
+Time spent: **2** hours spent so far
 
 ## User Stories
 
 The following **required** functionality is complete:
 
-- [ ] User can view a list of movies currently playing in theaters from The Movie Database.
-- [ ] Poster images are loaded using the UIImageView category in the AFNetworking library.
+- [x] User can view a list of movies currently playing in theaters from The Movie Database.
+- [x] Poster images are loaded using the UIImageView category in the AFNetworking library.
 - [ ] User sees a loading state while waiting for the movies API.
 - [ ] User can pull to refresh the movie list.
 
