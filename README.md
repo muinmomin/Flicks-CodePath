@@ -1,6 +1,5 @@
 # Project 1 - *Flicks*
 
-# Only the set up part of the assignment has been completed.
 
 **Flicks** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
