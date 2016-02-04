@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		28B282911C5EE43500C3C9BE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B282901C5EE43500C3C9BE /* DetailViewController.swift */; };
+		28C6A9F31C62E0FC0033E44E /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C6A9F21C62E0FC0033E44E /* MovieCollectionViewCell.swift */; };
+		28E25AF21C604C3A0096C4A0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E25AF11C604C3A0096C4A0 /* MapViewController.swift */; };
+		28E25AF51C604CEE0096C4A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E25AF31C604CAA0096C4A0 /* MapKit.framework */; };
 		28F1FCA61C5535940058B9FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F1FCA51C5535940058B9FF /* AppDelegate.swift */; };
 		28F1FCAB1C5535940058B9FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F1FCA91C5535940058B9FF /* Main.storyboard */; };
 		28F1FCAD1C5535940058B9FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28F1FCAC1C5535940058B9FF /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 
 /* Begin PBXFileReference section */
 		28B282901C5EE43500C3C9BE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		28C6A9F21C62E0FC0033E44E /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		28E25AF11C604C3A0096C4A0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		28E25AF31C604CAA0096C4A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28F1FCA21C5535940058B9FF /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F1FCA51C5535940058B9FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28F1FCAA1C5535940058B9FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E25AF51C604CEE0096C4A0 /* MapKit.framework in Frameworks */,
 				DA9C6D48D2F73916B5877B02 /* Pods_Flicks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				28F1FCBA1C554B8E0058B9FF /* MovieCell.swift */,
+				28C6A9F21C62E0FC0033E44E /* MovieCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -89,6 +97,7 @@
 			children = (
 				28F1FCB71C5536490058B9FF /* MoviesViewController.swift */,
 				28B282901C5EE43500C3C9BE /* DetailViewController.swift */,
+				28E25AF11C604C3A0096C4A0 /* MapViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -96,6 +105,7 @@
 		3E679620D014AC6C2A8324BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28E25AF31C604CAA0096C4A0 /* MapKit.framework */,
 				BFF9459933302241198903A0 /* Pods_Flicks.framework */,
 			);
 			name = Frameworks;
@@ -236,6 +246,8 @@
 				28F1FCA61C5535940058B9FF /* AppDelegate.swift in Sources */,
 				28F1FCB81C5536490058B9FF /* MoviesViewController.swift in Sources */,
 				28F1FCBB1C554B8E0058B9FF /* MovieCell.swift in Sources */,
+				28C6A9F31C62E0FC0033E44E /* MovieCollectionViewCell.swift in Sources */,
+				28E25AF21C604C3A0096C4A0 /* MapViewController.swift in Sources */,
 				28B282911C5EE43500C3C9BE /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

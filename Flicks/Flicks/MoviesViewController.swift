@@ -10,17 +10,25 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var toggleButton: UIBarButtonItem!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     
     var movies: [NSDictionary]?
+    var endpoint: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.hidden = true
+        
         tableView.dataSource = self
         tableView.delegate = self
+        collectionView.dataSource = self
         
         loadDataFromNetwork()
         
@@ -38,7 +46,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func loadDataFromNetwork() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let myRequest = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -65,6 +73,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             
                             self.movies = responseDictionary["results"] as? [NSDictionary]
                             dispatch_async(dispatch_get_main_queue(), {self.tableView.reloadData()})
+                            dispatch_async(dispatch_get_main_queue(), {self.collectionView.reloadData()})
                     }
                 }
                 
@@ -76,7 +85,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let myRequest = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -170,15 +179,84 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    
+    
+    
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let movies = movies {
+            return movies.count
+        }
+        else {
+            return 0
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("moviecellreuse", forIndexPath: indexPath) as! MovieCollectionViewCell
+        let movie = movies![indexPath.row]
+        
+        if let posterPath = movie["poster_path"] as? String {
+            let posterBaseUrl = "http://image.tmdb.org/t/p/w500"
+            let posterUrl = NSURL(string: posterBaseUrl + posterPath)
+            
+            
+            let imageRequest = NSURLRequest(URL: posterUrl!)
+            cell.posterImage.setImageWithURLRequest(imageRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        cell.posterImage.alpha = 0.0
+                        cell.posterImage.image = image
+                        UIView.animateWithDuration(1.0, animations: { () -> Void in
+                            cell.posterImage.alpha = 1.0
+                        })
+                    } else {
+                        cell.posterImage.image = image
+                    }
+                },
+                failure: {
+                    (imageRequest, imageResponse, error) -> Void in
+            })
+            
+            
+        }
+        else {
+            cell.posterImage.image = nil
+        }
+        
+        return cell
+    }
+    
+    
+    
+
+    @IBAction func toggleView(sender: UIBarButtonItem) {
+        tableView.hidden = !tableView.hidden
+        collectionView.hidden = !collectionView.hidden
+        if (tableView.hidden) {
+            toggleButton.title = "List"
+        }
+        else {
+            toggleButton.title = "Grid"
+        }
+        
+    }
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPathForCell(cell)
-        let movie = movies![indexPath!.row]
+        if segue.identifier == "ShowDetails" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let movie = movies![indexPath!.row]
+            
+            let detailVC = segue.destinationViewController as! DetailViewController
+            detailVC.movie = movie
+        }
         
-        let detailVC = segue.destinationViewController as! DetailViewController
-        detailVC.movie = movie
     }
 
 }

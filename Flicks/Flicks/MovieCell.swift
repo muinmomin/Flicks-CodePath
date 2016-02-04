@@ -26,6 +26,9 @@ class MovieCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red: 255, green: 215, blue: 0, alpha: 0.3)
+        selectedBackgroundView = backgroundView
     }
 
 }
