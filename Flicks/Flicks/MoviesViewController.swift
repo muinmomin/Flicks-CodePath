@@ -238,10 +238,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.hidden = !tableView.hidden
         collectionView.hidden = !collectionView.hidden
         if (tableView.hidden) {
-            toggleButton.title = "List"
+            //toggleButton.title = "List"
+            toggleButton.image = UIImage(named: "list.png")
         }
         else {
-            toggleButton.title = "Grid"
+            toggleButton.image = UIImage(named: "grid-2.png")
+            //toggleButton.title = "Grid"
         }
         
     }
