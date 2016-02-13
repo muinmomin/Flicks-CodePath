@@ -224,7 +224,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="grid-2" width="30" height="30"/>
-        <image name="map" width="30" height="30"/>
+        <image name="grid-2" width="20" height="20"/>
+        <image name="map" width="20" height="20"/>
     </resources>
 </document>
